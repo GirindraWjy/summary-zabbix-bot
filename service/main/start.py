@@ -67,12 +67,17 @@ async def stop(update: Update, context: ContextTypes.DEFAULT_TYPE):
     chat_id = update.effective_chat.id
 
     remove_chat_id(chat_id)
+    if chat_id in user_chat_ids:
+        user_chat_ids.remove(chat_id)
 
     jobs = context.job_queue.get_jobs_by_name(str(chat_id))
+    if not jobs:
+        print(f"[LOG] Tidak ada job ditemukan untuk Chat ID {chat_id}")
     for job in jobs:
-        job.remove()
-        print(f"[LOG] Job untuk Chat ID {chat_id} dihapus dari job queue.")
+        job.remove()  # langsung hapus
+        print(f"[LOG] Job {job.name} untuk Chat ID {chat_id} dihapus dari job queue.")
+        
+    active_jobs = [job.name for job in context.job_queue.jobs()]
+    print(f"[DEBUG] Jobs aktif setelah stop: {active_jobs}")
 
     await update.message.reply_text("🚫 Alert CPU dihentikan untuk chat ini.")
-
-

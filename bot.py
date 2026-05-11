@@ -33,16 +33,14 @@ async def insert_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     insert_to_summary(test_values)
     await update.message.reply_text(f"[LOG] Data {test_values} berhasil ditulis ke Summary")
 
-
-
 async def unknown_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     cmd = update.message.text
     await update.message.reply_text(f"⚠️ Command {cmd} tidak ada. Silakan cek /help untuk daftar command yang tersedia.")
     
 def main():
     
-    
     app = Application.builder().token(TOKEN).build()
+    restore_jobs(app)
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CommandHandler("help", help))
     app.add_handler(CommandHandler("mem", per_mem))
@@ -58,17 +56,34 @@ def main():
     print("Bot berjalan...")
     
     
+    # try:
+    #     with open("chat_ids.txt") as f:
+    #         chat_ids = [line.strip() for line in f if line.strip()]
+    #         print("[LOG] Chat ID tersimpan:")
+    #         for cid in chat_ids:
+    #             print(f" - {cid}")
+    #             app.job_queue.run_repeating(check_cpu, interval=20, first=0, chat_id=int(cid))
+    # except FileNotFoundError:
+    #     print("[LOG] Belum ada chat_id tersimpan, jalankan /start dulu.")
+        
+    app.run_polling()
+    
+def restore_jobs(application):
     try:
         with open("chat_ids.txt") as f:
             chat_ids = [line.strip() for line in f if line.strip()]
-            print("[LOG] Chat ID tersimpan:")
-            for cid in chat_ids:
-                print(f" - {cid}")
-                app.job_queue.run_repeating(check_cpu, interval=20, first=0, chat_id=int(cid))
+        for cid in chat_ids:
+            application.job_queue.run_repeating(
+                check_cpu,
+                interval=20,
+                first=0,
+                chat_id=int(cid),
+                name=cid
+            )
+        print(f"[LOG] Jobs dipulihkan untuk Chat IDs: {chat_ids}")
     except FileNotFoundError:
-        print("[LOG] Belum ada chat_id tersimpan, jalankan /start dulu.")
-        
-    app.run_polling()
+        print("[LOG] Tidak ada chat_ids.txt, tidak ada job dipulihkan")
+
 
 if __name__ == "__main__":
     main()

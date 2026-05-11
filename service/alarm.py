@@ -4,12 +4,14 @@ from telegram.ext import ContextTypes
 from config import HOST_MAP, ZABBIX_AUTH, ZABBIX_URL
 last_alert_time = {}
 
-THRESHOLD = 60
+THRESHOLD = 70
 ALERT_INTERVAL = 300
 HOST_REVERSE_MAP = {v: k for k, v in HOST_MAP.items()}
 
 async def check_cpu(context: ContextTypes.DEFAULT_TYPE):
-    print("[LOG] Menjalankan service: check_cpu")
+    job_name = getattr(context.job, "name", None)
+    chat_id = getattr(context.job, "chat_id", None)
+    print(f"[LOG] Menjalankan service: check_cpu (job={job_name}, chat_id={chat_id})")
 
     now = time.time()
 
