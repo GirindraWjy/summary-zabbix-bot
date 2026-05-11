@@ -53,12 +53,12 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     "- /cpu _server_ → cek CPU server tertentu\n"
     "- /disk _server_ → cek Disk server tertentu\n"
     "- /allmem → summary memory\n"
-    "- /allmem _jam_ → summary memory spesifik\n"
+    "- /allmem HH:MM → summary memory spesifik\n"
     "- /allcpu → summary CPU\n"
-    "- /allcpu _jam_ → summary CPU spesifik\n"
+    "- /allcpu HH:MM → summary CPU spesifik\n"
     "- /alldisk → summary Disk\n"
-    "- /alldisk _jam_ → summary Disk spesifik\n"
-    "- /summary _jam_ → insert summary di jam tertentu\n"
+    "- /alldisk HH:MM → summary Disk spesifik\n"
+    "- /summary HH:MM _atau_ DD/MM/YYYY HH:MM → insert summary di jam atau hari tertentu\n"
     "- /stop → hentikan notifikasi CPU untuk chat ini\n",
     parse_mode="Markdown"
 )
