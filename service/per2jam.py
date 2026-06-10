@@ -435,7 +435,7 @@ async def twohour_command(
         nama, tanggal, waktu, shift = args[:4]
 
         await update.message.reply_text(
-            "⏳ Membuat template dan mengambil summary..."
+            "⏳ Tunggu Sebentar..."
         )
 
         # =====================================
@@ -558,7 +558,7 @@ async def twohour_command(
         )
 
         await update.message.reply_text(
-            "✅ Template dan summary berhasil dibuat."
+            "✅ Per 2 Jam berhasil dibuat."
         )
 
     except Exception as e:
