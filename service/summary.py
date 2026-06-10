@@ -8,21 +8,20 @@ from telegram import Update
 from decimal import Decimal
 from telegram.ext import ContextTypes
 
-from auth.auth import get_sheet
-
 def insert_to_summary(values):
     sheet = get_sheet()
+    sheet_summary = sheet["Summary"]
 
     start_row = 4
     start_col = 3 
 
-    row_values = sheet.row_values(start_row)
+    row_values = sheet_summary.row_values(start_row)
     col_index = start_col
     while col_index <= len(row_values) and row_values[col_index-1] != "":
         col_index += 1
 
     for i, val in enumerate(values):
-        sheet.update_cell(start_row + i, col_index, val)
+        sheet_summary.update_cell(start_row + i, col_index, val)
 
     print(f"[LOG] Data {values} ditulis mulai dari kolom {col_index} ke bawah")
 

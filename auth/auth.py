@@ -12,8 +12,13 @@ def get_sheet():
 
     spreadsheet = client.open_by_url(
         # "https://docs.google.com/spreadsheets/d/17LHgbae8K0OxZlXUHulOtZnDn66Oapy5z9bClJDjtEA/edit#gid=0"
-        "https://docs.google.com/spreadsheets/d/1-wJUCSyZQZ_dKsZA7TUhncb_A3Ln84slLfTvDkAR4VQ/edit?gid=585288209#gid=585288209"
+        "https://docs.google.com/spreadsheets/d/1-wJUCSyZQZ_dKsZA7TUhncb_A3Ln84slLfTvDkAR4VQ"
     )
 
-    sheet = spreadsheet.worksheet("Summary")
-    return sheet
+    sheet_summary = spreadsheet.worksheet("Summary")
+    sheet_per2jam = spreadsheet.worksheet("Per 2 Jam")
+
+    return {
+        "Summary": sheet_summary,
+        "Per 2 Jam": sheet_per2jam
+    }

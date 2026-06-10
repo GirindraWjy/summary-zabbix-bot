@@ -3,5 +3,6 @@ __pycache__/
 *.pyc
 
 credentials.json
+credentials-backup.json
 chat_ids.txt
 config.py

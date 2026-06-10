@@ -16,6 +16,7 @@ async def help(update: Update, context: ContextTypes.DEFAULT_TYPE):
     "- /allcpu HH:MM → summary CPU spesifik\n"
     "- /alldisk → summary Disk\n"
     "- /alldisk HH:MM → summary Disk spesifik\n"
+    "- /2jam name DD/MM/YYYY HH:MM Shift → absen per 2 jam\n"
     "- /summary HH:MM _atau_ DD/MM/YYYY HH:MM → insert summary di jam atau hari tertentu\n"
     "- /stop → hentikan notifikasi CPU untuk chat ini\n",
     parse_mode="Markdown"

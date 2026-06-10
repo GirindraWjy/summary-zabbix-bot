@@ -5,8 +5,9 @@ from service.memory import per_mem, realtime_memory_command, specific_memory_com
 from service.alarm import check_cpu
 from service.cpu import per_cpu, realtime_cpu_command, specific_cpu_command
 from service.disk import per_disk, realtime_disk_command, specific_disk_command
-from service.summary import insert_to_summary, specific_summary_command
+from service.summary import specific_summary_command
 from service.main.start import start, stop
+from service.per2jam import twohour_command
 from service.main.help import help
 from config import TOKEN
 
@@ -27,11 +28,6 @@ async def alldisk_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await realtime_disk_command(update, context)
     else:
         await specific_disk_command(update, context)
-        
-async def insert_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    test_values = ["Test1", "Test2", "Test3"]
-    insert_to_summary(test_values)
-    await update.message.reply_text(f"[LOG] Data {test_values} berhasil ditulis ke Summary")
 
 async def unknown_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     cmd = update.message.text
@@ -49,9 +45,9 @@ def main():
     app.add_handler(CommandHandler("allmem", allmem_command))
     app.add_handler(CommandHandler("allcpu", allcpu_command))
     app.add_handler(CommandHandler("alldisk", alldisk_command))
-    app.add_handler(CommandHandler("insert", insert_command))
     app.add_handler(CommandHandler("summary", specific_summary_command))
     app.add_handler(CommandHandler("stop", stop))
+    app.add_handler(CommandHandler("2jam", twohour_command))
     app.add_handler(MessageHandler(filters.COMMAND, unknown_command))
     print("Bot berjalan...")
     
