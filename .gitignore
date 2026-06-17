@@ -6,3 +6,4 @@ credentials.json
 credentials-backup.json
 chat_ids.txt
 config.py
+pyenv.cfg

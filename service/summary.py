@@ -98,7 +98,7 @@ async def specific_summary_command(update: Update, context: ContextTypes.DEFAULT
         if iid in earliest:
             value = float(earliest[iid]["value"])
             if value >= 10:
-                formatted = str(int(value))  # integer
+                formatted = str(int(value))  
             elif value < 0.1:
                 truncated = math.floor(value * 100) / 100
                 formatted = f"{truncated:.2f}"  # 2 desimal
