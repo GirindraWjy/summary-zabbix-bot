@@ -233,59 +233,30 @@ def insert_status_result(results):
 
         col = column_map[idx]
 
-        # =========================================
-        # SERVER 35-59
-        # MERGED ROW 9-10
-        # =========================================
-
-        if idx >= 11:
-
-            start_row = LAST_TEMPLATE_ROW + 7
-            end_row = LAST_TEMPLATE_ROW + 9
-
-        # =========================================
-        # SERVER NORMAL
-        # STATUS DI ROW 10
-        # =========================================
-
-        else:
-
-            start_row = LAST_TEMPLATE_ROW + 8
-            end_row = LAST_TEMPLATE_ROW + 9
+        start_row = LAST_TEMPLATE_ROW + 8
+        end_row = LAST_TEMPLATE_ROW + 9
 
         requests.append({
-
             "repeatCell": {
-
                 "range": {
-
                     "sheetId": sheet.id,
-
                     "startRowIndex": start_row,
                     "endRowIndex": end_row,
-
                     "startColumnIndex": col,
                     "endColumnIndex": col + 1
                 },
-
                 "cell": {
-
                     "userEnteredValue": {
                         "stringValue": status_text
                     },
-
                     "userEnteredFormat": {
-
                         "backgroundColor": bg,
-
                         "horizontalAlignment": "CENTER",
-
                         "textFormat": {
                             "bold": True
                         }
                     }
                 },
-
                 "fields":
                     "userEnteredValue,"
                     "userEnteredFormat(backgroundColor,textFormat,horizontalAlignment)"
@@ -351,19 +322,19 @@ def insert_summary_result(results):
         (0,10), (1,10), (2,10),
 
         # SERVER 35
-        (0,11), (1,11),
+        (0,11), (1,11), (2, 11),
 
         # SERVER 61
-        (0,12), (1,12),
+        (0,12), (1,12), (2, 12),
 
         # SERVER 57
-        (0,13), (1,13),
+        (0,13), (1,13), (2, 13),
 
         # SERVER 58
-        (0,14), (1,14),
+        (0,14), (1,14), (2, 14),
 
         # SERVER 59
-        (0,15), (1,15),
+        (0,15), (1,15), (2, 15),
     ]
 
     requests = []

@@ -15,7 +15,7 @@ def get_sheet():
         "https://docs.google.com/spreadsheets/d/1-wJUCSyZQZ_dKsZA7TUhncb_A3Ln84slLfTvDkAR4VQ"
     )
 
-    sheet_summary = spreadsheet.worksheet("Summary")
+    sheet_summary = spreadsheet.worksheet("Summary v2.0")
     sheet_per2jam = spreadsheet.worksheet("Per 2 Jam")
 
     return {
